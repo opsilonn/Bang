@@ -206,13 +206,76 @@ public partial class Joueur
 
 
 
+
+    /// <summary> Retourne True si la main du joueur contient une carte de la classe cherchée, sinon False </summary>
+    /// <param name="classe"> Classe de Carte recherchée </param>
+    /// <returns> True si la main du joueur contient une carte de la classe cherchée, sinon False </returns>
     public bool MainContientClasses(Type classe)
     {
-        foreach(Carte carte in GetMain())
+        foreach (Carte carte in GetMain())
         {
             if (carte.GetType() == classe)
                 return true;
         }
         return false;
-    }   
+    }
+
+
+
+
+    /// <summary> Retourne True si la main du joueur contient une carte avec un effet Bang, sinon False </summary>
+    /// <returns> True si la main du joueur contient une carte avec un effet Bang, sinon False </returns>
+    public bool MainContientEffetBang()
+    {
+
+        foreach (Carte carte in GetMain())
+        {
+            if (carte.GetType().IsSubclassOf(typeof(Carte_Effet)))
+            {
+                Carte_Effet carteEffet = (Carte_Effet)carte;
+                if (carteEffet.GetEffetBang())
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    /// <summary> Retourne True si la main du joueur contient une carte avec un effet Boisson, sinon False </summary>
+    /// <returns> True si la main du joueur contient une carte avec un effet Boisson, sinon False </returns>
+    public bool MainContientEffetBoisson()
+    {
+
+        foreach (Carte carte in GetMain())
+        {
+            if (carte.GetType().IsSubclassOf(typeof(Carte_Effet)))
+            {
+                Carte_Effet carteEffet = (Carte_Effet)carte;
+                if (carteEffet.GetEffetBoisson())
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    /// <summary> Retourne True si la main du joueur contient une carte avec un effet Raté, sinon False </summary>
+    /// <returns> True si la main du joueur contient une carte avec un effet Raté, sinon False </returns>
+    public bool MainContientEffetRate()
+    {
+        
+        foreach ( Carte carte in GetMain() )
+        {
+            if ( carte.GetType().IsSubclassOf(typeof(Carte_Effet)) )
+            {
+                Carte_Effet carteEffet = (Carte_Effet)carte;
+                if ( carteEffet.GetEffetRate() )
+                    return true;
+            }
+        }
+        
+        return false;
+    }
 }

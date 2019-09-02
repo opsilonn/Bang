@@ -37,6 +37,11 @@ public class MainCorbeille : MonoBehaviour
 
         foreach (Carte c in partie.TrouverJoueur("J2").GetMain())
             c.GetInfo();
+
+
+        partie.TrouverJoueur("J2").GetMain().Add(new Carte_Effet_Bang());
+        // partie.TrouverJoueur("J2").GetMain().Add(new Carte_Effet_Rate());
+        partie.TrouverJoueur("J2").GetMain().Add(new Carte_Arme());
     }
 
 
@@ -44,11 +49,10 @@ public class MainCorbeille : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            if(partie.TrouverJoueur("J2").MainContientClasses(typeof(Carte_Effet_Rate) ))
+            if( partie.TrouverJoueur("J2").MainContientEffetRate() )
                 partie.TrouverJoueur("J2").GetPersonnage().Rate();
             else
                 joueurActif.GetPersonnage().Bang(partie.TrouverJoueur("J2"));
-
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
@@ -68,7 +72,7 @@ public class MainCorbeille : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
-            Debug.Log("on retire une carte Raté");
+            Debug.Log("On vide la main");
             partie.TrouverJoueur("J2").GetMain().Clear();
         }
     }
