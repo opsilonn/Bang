@@ -6,6 +6,7 @@ public abstract class Carte_Effet : Carte
     private bool effetBoisson;
     private bool effetRate;
 
+
     /// <summary>
     /// Constructeur par défaut de la classe
     /// </summary>
@@ -76,12 +77,12 @@ public abstract class Carte_Effet : Carte
     /// </summary>
     public override void GetInfo()
     {
-        Debug.Log("Carte Effet : " + GetTitre());
-        Debug.Log("Effet : " + GetDescriptionEffet());
+        Debug.Log("Carte Effet : " + titre);
+        Debug.Log("Effet : " + descriptionEffet);
         Debug.Log("Effet Bang : " + GetEffetBang());
         Debug.Log("Effet Boisson : " + GetEffetBoisson());
         Debug.Log("Effet Raté : " + GetEffetRate());
-        Debug.Log("Valeur : " + GetValeur() + " " + GetCouleur());
+        Debug.Log("Valeur : " + valeur + " " + couleur);
         Debug.Log("");
     }
 

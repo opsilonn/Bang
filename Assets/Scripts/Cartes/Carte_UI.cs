@@ -14,8 +14,8 @@ public class Carte_UI : MonoBehaviour
     void Start()
     {
         carte = new Carte_Arme();
-        textTitre.text = carte.GetTitre();
-        textDescription.text = carte.GetDescriptionEffet();
+        textTitre.text = carte.titre;
+        textDescription.text = carte.descriptionEffet;
         bordure.color = carte.GetCouleurEffet();
     }
 }

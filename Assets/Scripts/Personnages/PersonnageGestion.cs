@@ -18,7 +18,7 @@ public static class PersonnageGestion
 
 
         foreach (Personnage personnage in personnages)
-            Debug.Log( personnage.GetNom() );
+            Debug.Log( personnage.nom );
     }
 
 
@@ -62,7 +62,7 @@ public static class PersonnageGestion
 
 
         foreach (Personnage personnage in personnages)
-            personnages_string.Add( personnage.GetNom() );
+            personnages_string.Add( personnage.nom );
 
 
         return personnages_string;

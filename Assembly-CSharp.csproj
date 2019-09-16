@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\FPS_Counter.cs" />
     <Compile Include="Assets\Scripts\GestionOptions.cs" />
     <Compile Include="Assets\Scripts\GestionPause.cs" />
+    <Compile Include="Assets\Scripts\GestionResume.cs" />
     <Compile Include="Assets\Scripts\GestionScene.cs" />
     <Compile Include="Assets\Scripts\HoverEffect.cs" />
     <Compile Include="Assets\Scripts\Joueur.cs" />

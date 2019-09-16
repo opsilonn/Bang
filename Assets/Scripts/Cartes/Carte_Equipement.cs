@@ -36,9 +36,9 @@ public class Carte_Equipement : Carte
     /// </summary>
     public override void GetInfo()
     {
-        Debug.Log("Carte Equipement : " + GetTitre());
-        Debug.Log("Effet : " + GetDescriptionEffet());
-        Debug.Log("Valeur : " + GetValeur() + " " + GetCouleur());
+        Debug.Log("Carte Equipement : " + titre);
+        Debug.Log("Effet : " + descriptionEffet);
+        Debug.Log("Valeur : " + valeur + " " + couleur);
         Debug.Log("");
     }
 

@@ -2,7 +2,7 @@
 
 public class Carte_Arme : Carte
 {
-    private int portee;
+    private int _portee;
 
     private static readonly string TITRE_PAR_DEFAUT = "Colt. 45";
     private static readonly string DESCRIPTION_EFFET_PAR_DEFAUT = "L'arme de base";
@@ -37,26 +37,15 @@ public class Carte_Arme : Carte
 
 
 
-    /// <summary> Retourne la portée de la Carte Arme </summary>
-    /// <returns> La portée de la Carte Arme </returns>
-    public int GetPortee() { return portee; }
-
-    /// <summary> Change la portée de la carte </summary>
-    /// <param name="portee"> La nouvelle portée de la carte </param>
-    public void SetPortee(int portee) { this.portee = portee; }
-
-
-
-
     /// <summary>
     /// Affiche une représentation textuelle de l'instance dans la console
     /// </summary>
     public override void GetInfo()
     {
-        Debug.Log("Carte Arme : " + GetTitre());
-        Debug.Log("Effet : " + GetDescriptionEffet());
-        Debug.Log("Distance de tir : " + GetPortee());
-        Debug.Log("Valeur : " + GetValeur() + " " + GetCouleur());
+        Debug.Log("Carte Arme : " + titre);
+        Debug.Log("Effet : " + descriptionEffet);
+        Debug.Log("Distance de tir : " + portee);
+        Debug.Log("Valeur : " + valeur + " " + couleur);
         Debug.Log("");
     }
 
@@ -80,5 +69,15 @@ public class Carte_Arme : Carte
     public override Color32 GetCouleurEffet()
     {
         return new Color32(107, 140, 200, 255);
+    }
+
+
+
+
+    // PARAMETRES
+    public int portee
+    {
+        get { return _portee; }
+        set { _portee = value; }
     }
 }

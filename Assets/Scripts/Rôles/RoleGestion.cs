@@ -17,7 +17,7 @@ public class RoleGestion : MonoBehaviour
 
 
         foreach (Role role in roles)
-            Debug.Log(role.getTitre());
+            Debug.Log(role.titre);
     }
 
 
@@ -62,7 +62,7 @@ public class RoleGestion : MonoBehaviour
 
 
         foreach (Role role in roles)
-            roles_string.Add(role.getTitre());
+            roles_string.Add(role.titre);
 
 
         return roles_string;

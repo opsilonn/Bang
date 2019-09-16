@@ -2,8 +2,10 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - AppuyezSurUneTouche
+    - Carte_UI
     - FPS_Counter
     - GestionOptions
+    - GestionResume
     - GestionScene
     - HoverEffect
     - LevelChanger
@@ -86,19 +88,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10436}
     - Class: 114
-      Script: {instanceID: 10636}
+      Script: {instanceID: 10480}
     - Class: 114
-      Script: {instanceID: 10838}
+      Script: {instanceID: 10638}
     - Class: 114
-      Script: {instanceID: 11018}
+      Script: {instanceID: 10840}
     - Class: 114
-      Script: {instanceID: 11076}
+      Script: {instanceID: 11020}
     - Class: 114
-      Script: {instanceID: 11292}
+      Script: {instanceID: 11078}
     - Class: 114
-      Script: {instanceID: 11426}
+      Script: {instanceID: 11294}
     - Class: 114
-      Script: {instanceID: 11440}
+      Script: {instanceID: 11430}
+    - Class: 114
+      Script: {instanceID: 11444}
+    - Class: 114
+      Script: {instanceID: 35026}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -157,35 +163,35 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10290}
     - Class: 114
-      Script: {instanceID: 10524}
+      Script: {instanceID: 10526}
     - Class: 114
-      Script: {instanceID: 10614}
+      Script: {instanceID: 10616}
     - Class: 114
-      Script: {instanceID: 10636}
+      Script: {instanceID: 10638}
     - Class: 114
-      Script: {instanceID: 10780}
+      Script: {instanceID: 10782}
     - Class: 114
-      Script: {instanceID: 10838}
+      Script: {instanceID: 10840}
     - Class: 114
-      Script: {instanceID: 10852}
+      Script: {instanceID: 10854}
     - Class: 114
-      Script: {instanceID: 10964}
+      Script: {instanceID: 10966}
     - Class: 114
-      Script: {instanceID: 11018}
+      Script: {instanceID: 11020}
     - Class: 114
-      Script: {instanceID: 11076}
+      Script: {instanceID: 11078}
     - Class: 114
-      Script: {instanceID: 11120}
+      Script: {instanceID: 11122}
     - Class: 114
-      Script: {instanceID: 11224}
+      Script: {instanceID: 11226}
     - Class: 114
-      Script: {instanceID: 11256}
+      Script: {instanceID: 11258}
     - Class: 114
-      Script: {instanceID: 11292}
+      Script: {instanceID: 11294}
     - Class: 114
-      Script: {instanceID: 11426}
+      Script: {instanceID: 11430}
     - Class: 114
-      Script: {instanceID: 11458}
+      Script: {instanceID: 11462}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -403,7 +409,7 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
-      Hash: 4eb38fbd407aac506af8b32406d209f4
+      Hash: dfbfea91c386c734671ac3c15f7ba9db
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MainCorbeille
@@ -425,6 +431,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: SignalTrack
+  - hash:
+      serializedVersion: 2
+      Hash: a234bb2a800c5011eeafb4c4b46bd3d8
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Carte_UI
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -533,12 +545,6 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GestionOptions
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Partie
   - hash:
       serializedVersion: 2
       Hash: ee0cef6caaac8ae485bfa82f000f0f7b
@@ -683,9 +689,15 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 02deff9260a7e941c7a9dada22b08da9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GestionResume
   platform: 5
   scenePathNames:
   - Assets/Scenes/Menu_Principal.unity
   - Assets/Scenes/CORBEILLE.unity
-  playerPath: C:/Users/Hugues/Desktop/Bang/Bang !/Build Versions/Travail en cours
-    !/Bang !.exe
+  playerPath: C:/Users/Hugues/Desktop/Bang !/Build Versions/Version Fonctionnelle/Bang
+    !.exe

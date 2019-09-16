@@ -25,6 +25,8 @@ public class Carte_Effet_Bang : Carte_Effet
     { }
 
 
+
+
     /// <summary>
     /// Constructeur complet de la classe
     /// </summary>

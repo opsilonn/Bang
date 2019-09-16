@@ -4,20 +4,19 @@ using UnityEngine;
 
 
 public partial class Joueur
-{  
-    private Guid ID;
-    private string pseudonyme;
+{
+    private Guid _ID;
+    private string _pseudonyme;
 
-    private Personnage personnage;
-    private Role role;
+    private Personnage _personnage;
+    private Role _role;
 
-    private List<Carte> main;
-    private List<Carte> effetsSubis;
-    private Carte_Arme arme;
-    private Carte_Equipement equipement;
+    private List<Carte> _main;
+    private List<Carte> _effetsSubis;
+    private Carte_Arme _arme;
+    private Carte_Equipement _equipement;
 
-    private static readonly string NOM_PAR_DEFAUT = "John Doe";
-
+    private static readonly string PSEUDONYME_PAR_DEFAUT = "John Doe";
 
 
     /// <summary>
@@ -26,7 +25,7 @@ public partial class Joueur
     public Joueur()
     {
         ID = Guid.NewGuid();
-        pseudonyme = NOM_PAR_DEFAUT;
+        pseudonyme = PSEUDONYME_PAR_DEFAUT;
 
         personnage = null;
         role = null;
@@ -38,14 +37,16 @@ public partial class Joueur
     }
 
 
+
+
     /// <summary>
     /// Constructeur avancé de la classe Joueur
     /// </summary>
     /// <param name="pseudonyme"> Pseudonyme du Joueur </param>
     public Joueur(string pseudonyme)
     {
-        ID = Guid.NewGuid();
-        this.pseudonyme = pseudonyme;
+        _ID = Guid.NewGuid();
+        this._pseudonyme = pseudonyme;
 
         personnage = null;
         role = null;
@@ -57,6 +58,8 @@ public partial class Joueur
     }
 
 
+
+
     /// <summary>
     /// Constructeur complet de la classe Joueur
     /// </summary>
@@ -65,8 +68,8 @@ public partial class Joueur
     /// <param name="role"> Role du Joueur </param>
     public Joueur(string pseudonyme, Personnage personnage, Role role)
     {
-        ID = Guid.NewGuid();
-        this.pseudonyme = pseudonyme;
+        _ID = Guid.NewGuid();
+        this._pseudonyme = pseudonyme;
 
         this.personnage = personnage;
         this.role = role;
@@ -80,99 +83,21 @@ public partial class Joueur
 
 
 
-    /// <summary> Retourne l'ID du Joueur </summary>
-    /// <returns> L'ID du Joueur </returns>
-    public Guid GetID() { return ID; }
 
-    /// <summary> Change l'ID du Joueur </summary>
-    /// <param name="nom"> Nouvel ID du Joueur </param>
-    public void SetID(Guid ID) { this.ID = ID; }
-
-
-
-
-    /// <summary> Retourne le pseudonyme du Joueur </summary>
-    /// <returns> Le pseudonyme du Joueur </returns>
-    public string GetPseudonyme() { return pseudonyme; } 
-    
-    /// <summary> Change le pseudonyme du Joueur </summary>
-    /// <param name="pseudonyme"> Nouveau pseudonyme du Joueur </param>
-    public void SetPseudonyme(string pseudonyme) { this.pseudonyme = pseudonyme; }
-
-
-
-
-    /// <summary> Retourne le Personnage incarné par le Joueur </summary>
-    /// <returns> Le Personnage incarné par le Joueur </returns>
-    public Personnage GetPersonnage() { return personnage; }
-
-    /// <summary> Change le personnage incarné par le Joueur </summary>
-    /// <param name="personnage"> Nouveau personnage incarné par le Joueur </param>
-    public void SetPersonnage(Personnage personnage) { this.personnage = personnage; }
-
-
-
-
-    /// <summary> Retourne le Rôle du Joueur </summary>
-    /// <returns> Le Rôle du Joueur </returns>
-    public Role GetRole() { return role; }
-
-    /// <summary> Change le Rôle du Joueur </summary>
-    /// <param name="role"> Nouveau Rôle du Joueur </param>
-    public void SetRole(Role role) { this.role = role; }
-
-
-
-
-    /// <summary> Retourne la main du Joueur </summary>
-    /// <returns> La main du Joueur </returns>
-    public List<Carte> GetMain() { return main; }
-
-    /// <summary> Change la main du Joueur </summary>
-    /// <param name="main"> Nouvelle main du Joueur </param>
-    public void SetRole(List<Carte> main) { this.main = main; }
-
-
-
-
-    /// <summary> Retourne les Effets Subis par le Joueur </summary>
-    /// <returns> Les Effets Subis du Joueur </returns>
-    public List<Carte> GetEffetsSubis() { return effetsSubis; }
-
-    /// <summary> Change les Effets Subis du Joueur </summary>
-    /// <param name="effetsSubis"> Nouveaux Effets Subis du Joueur </param>
-    public void SetEffetsSubis(List<Carte> effetsSubis) { this.effetsSubis = effetsSubis; }
-
-
-
-
-    /// <summary> Retourne l'arme du Joueur </summary>
-    /// <returns> L'arme du Joueur </returns>
-    public Carte_Arme GetArme() { return arme; }
-
-    /// <summary> Change l'arme du Joueur </summary>
-    /// <param name="arme"> Nouvelle arme du Joueur </param>
-    public void SetArme(Carte_Arme arme) { this.arme = arme; }
-
-
-
-
-    /// <summary> Retourne l'équipement du Joueur </summary>
-    /// <returns> L'équipement du Joueur </returns>
-    public Carte_Equipement GetEquipement() { return equipement; }
-
-    /// <summary> Change l'équipement du Joueur </summary>
-    /// <param name="equipement"> Nouvel équipement du Joueur </param>
-    public void SetEquipement(Carte_Equipement equipement) { this.equipement = equipement; }
-
-
-
-
-    /// <summary> Retourne si le Joueur est en vie </summary>
-    /// <returns> True si le Joueur est en vie, sinon False </returns>
-    public bool EstVivant()
+    /// <summary>
+    /// Retourne le Rôle du Joueur pour l'interface.
+    /// S'il s'agit du Shérif, ou si le joueur est mort, on affiche son rôle.
+    /// Sinon, on affiche "???" pour le maintenir caché.
+    /// </summary>
+    /// <returns> Le Rôle du Joueur pour l'interface </returns>
+    public string GetRoleUI()
     {
-        return GetPersonnage().GetVie() > 0 ;
+        string titre = role.titre;
+
+        if(titre == "Shérif" || !EstVivant())
+            return titre;
+
+        return "???";
     }
 
 
@@ -183,7 +108,7 @@ public partial class Joueur
     /// </summary>
     public void GetInfo()
     {
-        Debug.Log("<b>Joueur " + GetPseudonyme() + "</b>");
+        Debug.Log("<b>Joueur " + pseudonyme + "</b>");
 
 
         if ( personnage == null )
@@ -198,8 +123,22 @@ public partial class Joueur
         if ( role == null )
             Debug.Log("Rôle : vide");
         else
-            role.getInfo();
+            role.GetInfo();
 
+
+        Debug.Log("");
+    }
+    
+
+
+
+    /// <summary> Affiche les cartes de la main </summary>
+    public void AfficherMain()
+    {
+        Debug.Log("<b>Main du Joueur " + pseudonyme + "</b>");
+
+        foreach (Carte carte in main)
+            carte.GetInfo();
 
         Debug.Log("");
     }
@@ -207,12 +146,54 @@ public partial class Joueur
 
 
 
+    /// <summary> Retourne si le Joueur est en vie </summary>
+    /// <returns> True si le Joueur est en vie, sinon False </returns>
+    public bool EstVivant()
+    {
+        return personnage.vie > 0;
+    }
+
+
+
+
+    /// <summary> Lance la fonction Bang du personnage </summary>
+    /// <param name="joueur"> Joueur visé par le Bang </param>
+    public void Bang(Joueur joueur)
+    {
+        personnage.Bang(joueur);
+    }
+
+
+    /// <summary> Lance la fonction Boisson du personnage </summary>
+    /// <param name="pv"> Nombre de pv récupéré(s) </param>
+    public void Boisson(int pv)
+    {
+        personnage.Boisson(pv);
+    }
+
+
+    /// <summary> Lance la fonction Raté du personnage </summary>
+    public void Rate()
+    {
+        personnage.Rate();
+    }
+
+
+    /// <summary> Lance la fonction Pioche du personnage </summary>
+    public void Pioche(int nombreCarte)
+    {
+        List<Carte> cartesAAjouter = personnage.Pioche(nombreCarte);
+        foreach(Carte carte in cartesAAjouter)
+            main.Add( carte );
+    }
+
+
     /// <summary> Retourne True si la main du joueur contient une carte de la classe cherchée, sinon False </summary>
     /// <param name="classe"> Classe de Carte recherchée </param>
     /// <returns> True si la main du joueur contient une carte de la classe cherchée, sinon False </returns>
     public bool MainContientClasses(Type classe)
     {
-        foreach (Carte carte in GetMain())
+        foreach (Carte carte in main)
         {
             if (carte.GetType() == classe)
                 return true;
@@ -227,8 +208,7 @@ public partial class Joueur
     /// <returns> True si la main du joueur contient une carte avec un effet Bang, sinon False </returns>
     public bool MainContientEffetBang()
     {
-
-        foreach (Carte carte in GetMain())
+        foreach (Carte carte in main)
         {
             if (carte.GetType().IsSubclassOf(typeof(Carte_Effet)))
             {
@@ -247,7 +227,7 @@ public partial class Joueur
     public bool MainContientEffetBoisson()
     {
 
-        foreach (Carte carte in GetMain())
+        foreach (Carte carte in main)
         {
             if (carte.GetType().IsSubclassOf(typeof(Carte_Effet)))
             {
@@ -266,7 +246,7 @@ public partial class Joueur
     public bool MainContientEffetRate()
     {
         
-        foreach ( Carte carte in GetMain() )
+        foreach ( Carte carte in main )
         {
             if ( carte.GetType().IsSubclassOf(typeof(Carte_Effet)) )
             {
@@ -277,5 +257,63 @@ public partial class Joueur
         }
         
         return false;
+    }
+
+
+
+
+
+
+
+
+    // PARAMETRES
+
+    public Guid ID
+    {
+        get { return _ID; }
+        set { _ID = value; }
+    }
+
+    public string pseudonyme
+    {
+        get { return _pseudonyme; }
+        set { _pseudonyme = value; }
+    }
+
+    public Personnage personnage
+
+    {
+        get { return _personnage; }
+        set { _personnage = value; }
+    }
+
+    public Role role
+    {
+        get { return _role; }
+        set { _role = value; }
+    }
+
+    public List<Carte> main
+    {
+        get { return _main; }
+        set { _main = value; }
+    }
+
+    public List<Carte> effetsSubis
+    {
+        get { return _effetsSubis; }
+        set { _effetsSubis = value; }
+    }
+
+    public Carte_Arme arme
+    {
+        get { return _arme; }
+        set { _arme = value; }
+    }
+
+    public Carte_Equipement equipement
+    {
+        get { return _equipement; }
+        set { _equipement = value; }
     }
 }

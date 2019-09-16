@@ -13,12 +13,11 @@ public class Main : MonoBehaviour
     /// </summary>
     void Start()
     {
-        
         joueur = new Joueur("Opsilonn");
         joueur.GetInfo();
 
-        joueur.SetPersonnage(new Personnage_BartCassidy());
-        joueur.SetRole(new Role_Adjoint());
+        joueur.personnage = new Personnage_BartCassidy();
+        joueur.role =new Role_Adjoint();
         joueur.GetInfo();
         
 

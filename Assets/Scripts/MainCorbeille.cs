@@ -1,12 +1,19 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+
 
 public class MainCorbeille : MonoBehaviour
 {
-    Partie partie;
+    public Partie partie;
+
     public TMPro.TMP_Dropdown dropdownPersonnages;
     public TMPro.TMP_Dropdown dropdownRoles;
     public Joueur joueurActif;
+    public TMPro.TextMeshProUGUI text;
+
+    private readonly string J1 = "Opsilonn";
+    private readonly string J2 = "Khorlaedril";
+    private readonly string J3 = "Bochi1505";
+
 
     /// <summary>
     /// Fait des trucs (A SUPPRIMER)
@@ -29,19 +36,20 @@ public class MainCorbeille : MonoBehaviour
 
         // Test Partie
         partie = new Partie();
-        partie.joueurs.Add(new Joueur("J1", new Personnage_BartCassidy(), new Role_Sherif()));
-        partie.joueurs.Add(new Joueur("J2", new Personnage_BlackJack(), new Role_Renegat()));
-        partie.joueurs.Add(new Joueur("J3", new Personnage_BlackJack(), new Role_HorsLaLoi()));
-
-        joueurActif = partie.TrouverJoueur("J1");
-
-        foreach (Carte c in partie.TrouverJoueur("J2").GetMain())
-            c.GetInfo();
+        partie.joueurs.Add(new Joueur(J1, new Personnage_BartCassidy(), new Role_Sherif()));
+        partie.joueurs.Add(new Joueur(J2, new Personnage_BlackJack(),   new Role_Renegat()));
+        partie.joueurs.Add(new Joueur(J3, new Personnage_BlackJack(),   new Role_HorsLaLoi()));
 
 
-        partie.TrouverJoueur("J2").GetMain().Add(new Carte_Effet_Bang());
-        // partie.TrouverJoueur("J2").GetMain().Add(new Carte_Effet_Rate());
-        partie.TrouverJoueur("J2").GetMain().Add(new Carte_Arme());
+        joueurActif = partie.TrouverJoueur(J1);
+
+        partie.TrouverJoueur(J2).main.Add(new Carte_Effet_Bang());
+        partie.TrouverJoueur(J2).main.Add(new Carte_Arme());
+
+        partie.TrouverJoueur(J1).personnage.ModifierVie(-4);
+        partie.TrouverJoueur(J3).personnage.ModifierVie(-4);
+
+        SetText();
     }
 
 
@@ -49,31 +57,56 @@ public class MainCorbeille : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            if( partie.TrouverJoueur("J2").MainContientEffetRate() )
-                partie.TrouverJoueur("J2").GetPersonnage().Rate();
+            if( partie.TrouverJoueur(J2).MainContientEffetRate() )
+                partie.TrouverJoueur(J2).Rate();
             else
-                joueurActif.GetPersonnage().Bang(partie.TrouverJoueur("J2"));
+                joueurActif.personnage.Bang(partie.TrouverJoueur(J2));
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
-            joueurActif.GetPersonnage().Bang(partie.TrouverJoueur("J3"));
-
         if (Input.GetKeyDown(KeyCode.Z))
-            joueurActif.GetPersonnage().Rate();
+            joueurActif.Rate();
 
         if (Input.GetKeyDown(KeyCode.E))
-            joueurActif.GetPersonnage().Boisson(2);
-
+            joueurActif.Boisson(2);
 
         if (Input.GetKeyDown(KeyCode.R))
         {
             Debug.Log("on ajoute une carte Raté");
-            partie.TrouverJoueur("J2").GetMain().Add(new Carte_Effet_Rate());
+            partie.TrouverJoueur(J2).main.Add(new Carte_Effet_Rate());
+            SetText();
         }
+
         if (Input.GetKeyDown(KeyCode.T))
         {
             Debug.Log("On vide la main");
-            partie.TrouverJoueur("J2").GetMain().Clear();
+            partie.TrouverJoueur(J2).main.Clear();
+            SetText();
         }
+
+        if (Input.GetKeyDown(KeyCode.Y))
+            partie.TrouverJoueur(J2).AfficherMain();
+
+        if (Input.GetKeyDown(KeyCode.U))
+            partie.TrouverJoueur(J2).personnage.ModifierVie(-1);
+
+        if (Input.GetKeyDown(KeyCode.I))
+            partie.VerifierConditionsVictoire();
+    }
+
+
+
+
+    /// <summary>
+    ///  INUTILE
+    /// </summary>
+    public void SetText()
+    {
+        text.SetText("");
+
+        foreach(Carte carte in partie.TrouverJoueur(J2).main)
+            text.text += carte.titre + "\n";
+
+        if(text.text.Length == 0)
+           text.SetText("Main vide !");
     }
 }

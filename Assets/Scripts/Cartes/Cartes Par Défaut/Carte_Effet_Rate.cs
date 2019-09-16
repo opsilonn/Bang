@@ -12,7 +12,6 @@ public class Carte_Effet_Rate : Carte_Effet
     private static readonly bool EFFET_RATE_PAR_DEFAUT = true;
 
 
-
     /// <summary>
     /// Constructeur avancé de la classe
     /// </summary>
@@ -23,6 +22,7 @@ public class Carte_Effet_Rate : Carte_Effet
         EFFET_BOIS_PAR_DEFAUT,
         EFFET_RATE_PAR_DEFAUT)
     { }
+
 
 
 
