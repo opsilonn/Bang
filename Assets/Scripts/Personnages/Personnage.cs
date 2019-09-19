@@ -5,22 +5,18 @@ using UnityEngine;
 public class Personnage
 {
     private string _nom;
-
-    private int _vie;
     private int _vieMax;
-
+    private int _vie;
     private string _descriptionPouvoir;
-
     private bool _sexe;
     private string _nationalite;
     private char _tierList;
-
     private int _eloignement;
     private int _visee;
 
     private static readonly string NOM_PAR_DEFAUT = "John Doe";
-    private static readonly int    VIE_PAR_DEFAUT = 4;
     private static readonly int    VIE_MAX_PAR_DEFAUT = 4;
+    private static readonly int    VIE_PAR_DEFAUT = 4;
     private static readonly string DESCRIPTION_POUVOIR_PAR_DEFAUT = "Je n'ai aucun pouvoir ...";
     private static readonly bool   SEXE_PAR_DEFAUT = true;
     private static readonly string NATIONALITE_PAR_DEFAUT = "Américain";
@@ -34,19 +30,15 @@ public class Personnage
     /// </summary>
     public Personnage()
     {
-        _nom = NOM_PAR_DEFAUT;
-
-        _vie = VIE_PAR_DEFAUT;
-        _vieMax = VIE_MAX_PAR_DEFAUT;
-
-        _descriptionPouvoir = DESCRIPTION_POUVOIR_PAR_DEFAUT;
-
-        _sexe = SEXE_PAR_DEFAUT;
-        _nationalite = NATIONALITE_PAR_DEFAUT;
-        _tierList = TIERLIST_PAR_DEFAUT;
-
-        _eloignement = ELOIGNEMENT_PAR_DEFAUT;
-        _visee = VISEE_PAR_DEFAUT;
+        nom = NOM_PAR_DEFAUT;
+        vieMax = VIE_MAX_PAR_DEFAUT;
+        vie = VIE_PAR_DEFAUT;
+        descriptionPouvoir = DESCRIPTION_POUVOIR_PAR_DEFAUT;
+        sexe = SEXE_PAR_DEFAUT;
+        nationalite = NATIONALITE_PAR_DEFAUT;
+        tierList = TIERLIST_PAR_DEFAUT;
+        eloignement = ELOIGNEMENT_PAR_DEFAUT;
+        visee = VISEE_PAR_DEFAUT;
     }
 
 
@@ -66,16 +58,12 @@ public class Personnage
     public Personnage(string nom, int vie, int vieMax, string descriptionPouvoir, bool sexe, string nationalite, char tierList, int eloignement, int visee)
     {
         this._nom = nom;
-
-        this._vie = vie;
         this._vieMax = vieMax;
-
+        this._vie = vie;
         this._descriptionPouvoir = descriptionPouvoir;
-
         this._sexe = sexe;
         this._nationalite = nationalite;
         this._tierList = tierList;
-
         this._eloignement = eloignement;
         this._visee = visee;
     }
@@ -116,12 +104,24 @@ public class Personnage
     }
 
 
+
+
     /// <summary>
     /// Je tire !
     /// </summary>
-    public void Bang(Joueur joueur)
+    public void Bang(Joueur soi, Joueur joueurvise)
     {
-        Debug.Log("Je tire sur " + joueur.pseudonyme + " !");
+        Debug.Log("Je tire sur " + joueurvise.pseudonyme + " !");
+        joueurvise.personnage.SubirTir(soi);
+    }
+
+
+    /// <summary>
+    /// Je tire !
+    /// </summary>
+    public void SubirTir(Joueur joueur)
+    {
+        Debug.Log(joueur.pseudonyme + " me tire dessus !");
     }
 
 
@@ -135,14 +135,18 @@ public class Personnage
     }
 
 
+
+
     /// <summary>
     /// Je bois !
     /// </summary>
     public void Boisson(int pv)
     {
         Debug.Log("Je gagne " + pv + " pv !");
-        vie = pv;
+        ModifierVie(pv);
     }
+
+
 
 
     /// <summary>

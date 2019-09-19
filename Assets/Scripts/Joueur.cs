@@ -15,6 +15,7 @@ public partial class Joueur
     private List<Carte> _effetsSubis;
     private Carte_Arme _arme;
     private Carte_Equipement _equipement;
+    
 
     private static readonly string PSEUDONYME_PAR_DEFAUT = "John Doe";
 
@@ -157,10 +158,10 @@ public partial class Joueur
 
 
     /// <summary> Lance la fonction Bang du personnage </summary>
-    /// <param name="joueur"> Joueur visé par le Bang </param>
-    public void Bang(Joueur joueur)
+    /// <param name="joueurvise"> Joueur visé par le Bang </param>
+    public void Bang(Joueur joueurvise)
     {
-        personnage.Bang(joueur);
+        personnage.Bang(this, joueurvise);
     }
 
 

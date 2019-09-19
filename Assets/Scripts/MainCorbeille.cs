@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class MainCorbeille : MonoBehaviour
 {
@@ -7,12 +8,15 @@ public class MainCorbeille : MonoBehaviour
 
     public TMPro.TMP_Dropdown dropdownPersonnages;
     public TMPro.TMP_Dropdown dropdownRoles;
-    public Joueur joueurActif;
     public TMPro.TextMeshProUGUI text;
 
     private readonly string J1 = "Opsilonn";
     private readonly string J2 = "Khorlaedril";
     private readonly string J3 = "Bochi1505";
+
+    public TMPro.TMP_Dropdown dropdownJoueurActif;
+    public TMPro.TMP_Dropdown dropdownJoueurCible;
+    public Slider sliderPV;
 
 
     /// <summary>
@@ -41,59 +45,111 @@ public class MainCorbeille : MonoBehaviour
         partie.joueurs.Add(new Joueur(J3, new Personnage_BlackJack(),   new Role_HorsLaLoi()));
 
 
-        joueurActif = partie.TrouverJoueur(J1);
-
         partie.TrouverJoueur(J2).main.Add(new Carte_Effet_Bang());
         partie.TrouverJoueur(J2).main.Add(new Carte_Arme());
 
-        partie.TrouverJoueur(J1).personnage.ModifierVie(-4);
-        partie.TrouverJoueur(J3).personnage.ModifierVie(-4);
-
         SetText();
+
+
+        // Test Automatisation
+        dropdownJoueurActif.options.Clear();
+        dropdownJoueurCible.options.Clear();
+        dropdownJoueurActif.AddOptions(new List<string>() { J1, J2, J3 });
+        dropdownJoueurCible.AddOptions(new List<string>() { J1, J2, J3 });
     }
 
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            if( partie.TrouverJoueur(J2).MainContientEffetRate() )
-                partie.TrouverJoueur(J2).Rate();
-            else
-                joueurActif.personnage.Bang(partie.TrouverJoueur(J2));
-        }
-
-        if (Input.GetKeyDown(KeyCode.Z))
-            joueurActif.Rate();
-
-        if (Input.GetKeyDown(KeyCode.E))
-            joueurActif.Boisson(2);
-
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Debug.Log("on ajoute une carte Raté");
-            partie.TrouverJoueur(J2).main.Add(new Carte_Effet_Rate());
+            joueurCible.main.Add(new Carte_Effet_Rate());
             SetText();
         }
 
         if (Input.GetKeyDown(KeyCode.T))
         {
             Debug.Log("On vide la main");
-            partie.TrouverJoueur(J2).main.Clear();
+            joueurCible.main.Clear();
             SetText();
         }
 
         if (Input.GetKeyDown(KeyCode.Y))
-            partie.TrouverJoueur(J2).AfficherMain();
+            joueurCible.AfficherMain();
 
         if (Input.GetKeyDown(KeyCode.U))
-            partie.TrouverJoueur(J2).personnage.ModifierVie(-1);
+            joueurCible.personnage.ModifierVie(-1);
 
         if (Input.GetKeyDown(KeyCode.I))
             partie.VerifierConditionsVictoire();
     }
 
 
+
+
+    public void Bang()
+    {
+        if (joueurCible.MainContientEffetRate())
+            joueurCible.Rate();
+        else
+            joueurActif.Bang(joueurCible);
+    }
+
+
+
+
+    public void Rate()
+    {
+        joueurActif.Rate();
+    }
+
+
+
+
+    public void Boisson()
+    {
+        joueurActif.Boisson((int)sliderPV.value);
+    }
+
+
+
+
+    public Joueur joueurActif
+    {
+        get
+        {
+            int i = dropdownJoueurActif.value;
+
+            if (i == 0)
+                return partie.TrouverJoueur(J1);
+            if (i == 1)
+                return partie.TrouverJoueur(J2);
+            if (i == 2)
+                return partie.TrouverJoueur(J3);
+
+            return null;
+        }
+    }
+
+
+
+
+    public Joueur joueurCible
+    {
+        get
+        {
+            int i = dropdownJoueurCible.value;
+
+            if (i == 0)
+                return partie.TrouverJoueur(J1);
+            if (i == 1)
+                return partie.TrouverJoueur(J2);
+            if (i == 2)
+                return partie.TrouverJoueur(J3);
+
+            return null;
+        }
+    }
 
 
     /// <summary>

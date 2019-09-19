@@ -6,6 +6,7 @@ public class FPS_Counter : MonoBehaviour
 {
     public TextMeshProUGUI text;
 
+
     /// <summary>
     /// Met à jour le compteur de FPS chaque seconde
     /// </summary>
@@ -21,11 +22,8 @@ public class FPS_Counter : MonoBehaviour
 
 
 
-    /// <summary>
-    /// Lance la Coroutine
-    /// </summary>
     void Start()
     {
-        StartCoroutine( FPSCounter() );
+        StartCoroutine(FPSCounter());
     }
 } 
